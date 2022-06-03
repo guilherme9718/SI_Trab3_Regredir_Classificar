@@ -1,0 +1,5 @@
+Random Forest Regressor
+n_estimators=2000, ramdom_state=43
+
+mean_squared_error, root_mean_squared_error, mean_absolute_error, r_squared
+10.6287, 3.2601, 2.1850, 0.9585
