@@ -1,0 +1,11 @@
+{
+    "date": "21_6_2022-17:24",
+    "hidden_layers": [
+        "sigmoid",
+        "sigmoid"
+    ],
+    "epoch": 50000,
+    "normalization": "standardScaler",
+    "optimizer": "SGD",
+    "loss": "mean_absolute_error"
+}
