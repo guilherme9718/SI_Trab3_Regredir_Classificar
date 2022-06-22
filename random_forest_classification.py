@@ -18,14 +18,32 @@ X_variables, y_variables = load_normalized_data_classification()
 
 X_train, X_test, y_train, y_test = train_test_split(X_variables, y_variables, test_size=0.3, random_state=10)
 
-clf = RandomForestClassifier(n_estimators=1000, random_state=0)
-clf.fit(X_train, y_train)
+precision = 0
+f1 = 0
+accuracy = 0
+recall = 0
 
 y_test = y_test.reset_index(drop=True)
 X_test = X_test.reset_index(drop=True)
 
 #previsao
-predict = clf.predict(X_test)
+
+from sklearn.metrics import precision_score, f1_score, accuracy_score, recall_score
+for i in range(5):
+    clf = RandomForestClassifier(n_estimators=1000, random_state=i)
+    clf.fit(X_train, y_train)
+    predict = clf.predict(X_test)
+    
+    precision += precision_score(y_test, predict, average='micro')
+    f1 += f1_score(y_test, predict, average='micro')
+    accuracy += accuracy_score(y_test, predict)
+    recall += recall_score(y_test, predict, average='micro')
+
+precision /= 5
+f1 /= 5
+accuracy /= 5
+recall /= 5
+
 df_predict = pd.DataFrame()
 df_predict['real'] = y_test
 df_predict['previsao'] = predict
